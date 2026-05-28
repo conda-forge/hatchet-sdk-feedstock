@@ -8,8 +8,12 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/h/hatchet-sdk/hatchet_sdk-${{ version }}.tar.gz
-    sha256: b53d49514bf9d49ca727e1610776cdf86a7c3e9d05b519b0218cd2bb8c648551
+  # The PyPI sdist for hatchet-sdk is empty (only contains metadata files like pyproject.toml,
+  # README.md, and PKG-INFO, but no actual Python source code). The wheel contains the full
+  # package code, so we use the wheel directly for installation.
+  - url: https://files.pythonhosted.org/packages/da/2c/cc26b351842de55441e113a6e622f749cbcd1329ceff1cd3de0650f86904/hatchet_sdk-${{ version }}-py3-none-any.whl
+    sha256: 7cde10c1d475219fe8a91e68a639c3c5cd3c70df53bbcc24a9e4789246800f51
+    file_name: hatchet_sdk-${{ version }}-py3-none-any.whl
   - url: https://raw.githubusercontent.com/hatchet-dev/hatchet/366c79441d9260e63c24727743c3a5271cf239f4/LICENSE
     sha256: 7388b34bd1ad4b9db3c72dcb73f434ea27c88e5ca8f02a24d4f970c906d79be3
     file_name: LICENSE
@@ -17,13 +21,13 @@ source:
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    # Use the wheel directly because the sdist is empty of actual code
+    - ${{ PYTHON }} -m pip install hatchet_sdk-${{ version }}-py3-none-any.whl -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python ${{ python_min }}.*
-    - hatchling
-    - poetry-core
     - pip
   run:
     - python >=${{ python_min }}
