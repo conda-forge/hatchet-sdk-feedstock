@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "1.33.5"
+  version: "1.33.6"
 
 package:
   name: hatchet-sdk
@@ -11,15 +11,15 @@ source:
   # The PyPI sdist for hatchet-sdk is empty (only contains metadata files like pyproject.toml,
   # README.md, and PKG-INFO, but no actual Python source code). The wheel contains the full
   # package code, so we use the wheel directly for installation.
-  - url: https://files.pythonhosted.org/packages/da/2c/cc26b351842de55441e113a6e622f749cbcd1329ceff1cd3de0650f86904/hatchet_sdk-${{ version }}-py3-none-any.whl
-    sha256: 7cde10c1d475219fe8a91e68a639c3c5cd3c70df53bbcc24a9e4789246800f51
+  - url: https://files.pythonhosted.org/packages/04/12/b31a029879e4ddd4c74e794725ab54f22703839edda3dfe9bbbeded5d350/hatchet_sdk-${{ version }}.tar.gz
+    sha256: 7ccb39fdd578e15307936d4a97f4ba6e2fcb6f7c3b1ca101a1de37eebb6df9a7
     file_name: hatchet_sdk-${{ version }}-py3-none-any.whl
   - url: https://raw.githubusercontent.com/hatchet-dev/hatchet/366c79441d9260e63c24727743c3a5271cf239f4/LICENSE
     sha256: 7388b34bd1ad4b9db3c72dcb73f434ea27c88e5ca8f02a24d4f970c906d79be3
     file_name: LICENSE
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script:
     # Use the wheel directly because the sdist is empty of actual code
