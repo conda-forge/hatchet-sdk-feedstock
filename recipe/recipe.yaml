@@ -19,7 +19,7 @@ source:
     file_name: LICENSE
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     # Use the wheel directly because the sdist is empty of actual code
