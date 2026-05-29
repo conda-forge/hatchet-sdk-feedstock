@@ -11,8 +11,8 @@ source:
   # The PyPI sdist for hatchet-sdk is empty (only contains metadata files like pyproject.toml,
   # README.md, and PKG-INFO, but no actual Python source code). The wheel contains the full
   # package code, so we use the wheel directly for installation.
-  - url: https://files.pythonhosted.org/packages/04/12/b31a029879e4ddd4c74e794725ab54f22703839edda3dfe9bbbeded5d350/hatchet_sdk-${{ version }}.tar.gz
-    sha256: 7ccb39fdd578e15307936d4a97f4ba6e2fcb6f7c3b1ca101a1de37eebb6df9a7
+  - url: https://files.pythonhosted.org/packages/cd/61/fdfb7143e4311b6560edf9edef9cd495a80327d37edadde04fef5954129a/hatchet_sdk-${{ version }}-py3-none-any.whl
+    sha256: deb81fabe417db0bb5dbe9218f737a5a3b7d58eccdfb0e0fddb5fb9730659383
     file_name: hatchet_sdk-${{ version }}-py3-none-any.whl
   - url: https://raw.githubusercontent.com/hatchet-dev/hatchet/366c79441d9260e63c24727743c3a5271cf239f4/LICENSE
     sha256: 7388b34bd1ad4b9db3c72dcb73f434ea27c88e5ca8f02a24d4f970c906d79be3
@@ -47,6 +47,9 @@ tests:
   - python:
       imports:
         - hatchet_sdk
+        - hatchet_sdk.clients.rest.rest
+        - hatchet_sdk.clients.rest.api
+        - hatchet_sdk.clients.rest.api.workflow_api
       pip_check: true
       python_version:
         - ${{ python_min }}.*
